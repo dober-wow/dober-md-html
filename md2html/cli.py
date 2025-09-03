@@ -3,6 +3,7 @@ Command-line interface for md2html converter.
 Explicit configuration, no fallbacks, no magic.
 """
 
+import logging
 import sys
 from pathlib import Path
 import click
@@ -11,17 +12,29 @@ from .converter import convert_markdown, convert_directory
 from .watcher import watch_directory
 from .server import serve_directory
 
+# Configure logging
+logger = logging.getLogger(__name__)
+
 
 @click.group()
 @click.version_option(version='2.0.0', prog_name='md2html')
-def cli():
+@click.option('--log-level', default='INFO',
+              type=click.Choice(['DEBUG', 'INFO', 'WARNING', 'ERROR']),
+              help='Set logging level')
+def cli(log_level):
     """
     Markdown to HTML converter.
     
     Explicit configuration only. No fallbacks, no auto-detection.
     All options must be specified.
     """
-    pass
+    # Configure logging based on user preference
+    logging.basicConfig(
+        level=getattr(logging, log_level),
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    logger.debug(f"Logging level set to: {log_level}")
 
 
 @cli.command()
@@ -60,9 +73,12 @@ def convert(source, output, theme, embed_images, toc, recursive):
         # Convert single file
         try:
             click.echo(f"Converting: {source_path}")
+            logger.info(f"Starting single file conversion: {source_path}")
             convert_markdown(source_path, output_path, theme, embed_images, toc)
             click.echo(f"Success: {output_path}")
+            logger.info(f"Successfully converted to: {output_path}")
         except Exception as e:
+            logger.error(f"Conversion failed: {e}", exc_info=True)
             click.echo(f"Error: {e}", err=True)
             sys.exit(1)
     
@@ -74,9 +90,12 @@ def convert(source, output, theme, embed_images, toc, recursive):
         # Convert directory
         try:
             click.echo(f"Converting directory: {source_path}")
+            logger.info(f"Starting directory conversion: {source_path}")
             count = convert_directory(source_path, output_path, theme, embed_images, toc, recursive)
             click.echo(f"Success: Converted {count} files to {output_path}")
+            logger.info(f"Batch conversion complete: {count} files")
         except Exception as e:
+            logger.error(f"Directory conversion failed: {e}", exc_info=True)
             click.echo(f"Error: {e}", err=True)
             sys.exit(1)
     
@@ -114,12 +133,15 @@ def watch(directory, output, theme, interval, recursive):
     click.echo(f"Output: {out_path}")
     click.echo(f"Theme: {theme}")
     click.echo(f"Press Ctrl+C to stop")
+    logger.info(f"Starting file watcher on: {dir_path}")
     
     try:
         watch_directory(dir_path, out_path, theme, interval, recursive)
     except KeyboardInterrupt:
+        logger.info("File watcher stopped by user")
         click.echo("\nStopped watching.")
     except Exception as e:
+        logger.error(f"Watch mode failed: {e}", exc_info=True)
         click.echo(f"Error: {e}", err=True)
         sys.exit(1)
 
@@ -145,18 +167,24 @@ def serve(directory, port, host):
     # Check for HTML files
     html_files = list(dir_path.glob('**/*.html'))
     if not html_files:
+        logger.error(f"No HTML files found in {dir_path}")
         click.echo(f"Error: No HTML files found in {dir_path}", err=True)
         sys.exit(1)
+    
+    logger.info(f"Found {len(html_files)} HTML files to serve")
     
     click.echo(f"Serving: {dir_path}")
     click.echo(f"URL: http://{host}:{port}")
     click.echo(f"Press Ctrl+C to stop")
+    logger.info(f"Starting HTTP server on {host}:{port}")
     
     try:
         serve_directory(dir_path, host, port)
     except KeyboardInterrupt:
+        logger.info("Server stopped by user")
         click.echo("\nServer stopped.")
     except Exception as e:
+        logger.error(f"Server failed: {e}", exc_info=True)
         click.echo(f"Error: {e}", err=True)
         sys.exit(1)
 

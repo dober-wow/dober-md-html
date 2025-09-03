@@ -3,6 +3,7 @@ File watcher for automatic markdown conversion.
 No auto-detection, explicit configuration only.
 """
 
+import logging
 import time
 from pathlib import Path
 from datetime import datetime
@@ -11,6 +12,9 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileModifiedEvent
 
 from .converter import convert_markdown
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 class MarkdownHandler(FileSystemEventHandler):
@@ -61,7 +65,9 @@ class MarkdownHandler(FileSystemEventHandler):
         rel_path = path.relative_to(self.source_dir)
         output_path = self.output_dir / rel_path.with_suffix('.html')
         
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] Converting: {path.name}")
+        timestamp = datetime.now().strftime('%H:%M:%S')
+        print(f"[{timestamp}] Converting: {path.name}")
+        logger.info(f"File modified: {path}")
         
         try:
             convert_markdown(
@@ -71,10 +77,14 @@ class MarkdownHandler(FileSystemEventHandler):
                 embed_images=True,  # Always embed in watch mode
                 toc=False  # No TOC in watch mode
             )
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] Success: {output_path.name}")
+            timestamp = datetime.now().strftime('%H:%M:%S')
+            print(f"[{timestamp}] Success: {output_path.name}")
+            logger.info(f"Successfully converted: {path} → {output_path}")
         except Exception as e:
             # Report error but continue watching
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] Error: {e}")
+            timestamp = datetime.now().strftime('%H:%M:%S')
+            print(f"[{timestamp}] Error: {e}")
+            logger.error(f"Failed to convert {path}: {e}", exc_info=True)
     
     def on_created(self, event):
         """Handle new file creation."""
@@ -108,11 +118,14 @@ def watch_directory(
     
     # Start watching
     observer.start()
+    logger.info(f"Started watching: {source_dir} (recursive={recursive})")
     
     try:
         while True:
             time.sleep(interval)
     except KeyboardInterrupt:
+        logger.info("Stopping file watcher...")
         observer.stop()
     
     observer.join()
+    logger.info("File watcher stopped")
