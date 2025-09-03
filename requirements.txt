@@ -1,0 +1,4 @@
+# Python dependencies for Bean Raid Chronicle site generator
+markdown>=3.4.0
+beautifulsoup4>=4.12.0
+bleach>=6.0.0

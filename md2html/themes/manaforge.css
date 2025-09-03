@@ -1,0 +1,155 @@
+/* Manaforge Theme - Cyberpunk-inspired dark theme */
+
+:root {
+    --mf-bg: #0a0a0f;
+    --mf-surface: #12121f;
+    --mf-border: #2a2a3f;
+    --mf-text: #e0e0ff;
+    --mf-text-muted: #9090b0;
+    --mf-cyan: #00ffff;
+    --mf-violet: #8a5fff;
+    --mf-pink: #ff00ff;
+    --mf-accent: linear-gradient(135deg, var(--mf-cyan), var(--mf-violet));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--mf-text);
+    background: var(--mf-bg);
+    padding: 2rem;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--mf-surface);
+    border: 1px solid var(--mf-border);
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    color: var(--mf-cyan);
+    font-size: 2.5rem;
+    border-bottom: 2px solid var(--mf-cyan);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: var(--mf-violet);
+    font-size: 2rem;
+}
+
+h3 {
+    color: var(--mf-pink);
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+a {
+    color: var(--mf-cyan);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--mf-violet);
+    text-shadow: 0 0 10px currentColor;
+}
+
+code {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--mf-cyan);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background: var(--mf-bg);
+    border: 1px solid var(--mf-border);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+pre code {
+    background: none;
+    color: var(--mf-text);
+    padding: 0;
+}
+
+blockquote {
+    border-left: 4px solid var(--mf-violet);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--mf-text-muted);
+    font-style: italic;
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid var(--mf-border);
+}
+
+th {
+    background: var(--mf-bg);
+    color: var(--mf-cyan);
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background: rgba(138, 95, 255, 0.05);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: var(--mf-accent);
+    margin: 2rem 0;
+}
