@@ -1,0 +1,282 @@
+/* Forgeweaver Araz Theme - Reactor violet & hot magenta, unstable energy */
+
+:root {
+    /* Core Araz Palette */
+    --araz-bg: #0B0613;           /* Reactor BG */
+    --araz-surface: #150D24;      /* Coil Surface */
+    --araz-primary: #7A3DF0;      /* Forge Violet */
+    --araz-secondary: #FF4DD2;    /* Overload Magenta */
+    --araz-accent: #FFB74A;       /* Arcane Amber */
+    --araz-danger: #FF5A3C;       /* Meltdown/Danger */
+    --araz-text: #F3E8FF;         /* Sigil Text */
+    --araz-muted: #C6B8E9;        /* Muted Text */
+    
+    /* Banner gradient */
+    --araz-banner: linear-gradient(135deg, #150D24 0%, #7A3DF0 55%, #FF4DD2 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--araz-text);
+    background: var(--araz-bg);
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Forge energy animation */
+@keyframes forgePulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--araz-primary) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    animation: forgePulse 4s ease-in-out infinite;
+    pointer-events: none;
+    filter: blur(100px);
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--araz-surface);
+    border: 1px solid color-mix(in oklab, var(--araz-primary) 30%, transparent);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 
+        0 0 80px rgba(122, 61, 240, 0.2),
+        0 0 40px rgba(255, 77, 210, 0.1),
+        inset 0 0 120px rgba(122, 61, 240, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.markdown-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--araz-banner);
+    border-radius: 12px 12px 0 0;
+    animation: forgePulse 3s ease-in-out infinite;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--araz-primary), var(--araz-secondary), var(--araz-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 2px solid var(--araz-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 20px rgba(122, 61, 240, 0.5));
+}
+
+h2 {
+    color: var(--araz-secondary);
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    text-shadow: 0 0 20px currentColor;
+}
+
+h3 {
+    color: var(--araz-accent);
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--araz-text);
+}
+
+a {
+    color: var(--araz-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--araz-secondary);
+    text-shadow: 0 0 20px currentColor;
+}
+
+code {
+    background: color-mix(in oklab, var(--araz-primary) 15%, transparent);
+    color: var(--araz-accent);
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid color-mix(in oklab, var(--araz-secondary) 20%, transparent);
+}
+
+pre {
+    background: var(--araz-bg);
+    border: 1px solid color-mix(in oklab, var(--araz-primary) 25%, transparent);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(122, 61, 240, 0.1);
+}
+
+pre code {
+    background: none;
+    color: var(--araz-text);
+    padding: 0;
+    border: none;
+}
+
+blockquote {
+    border-left: 4px solid var(--araz-secondary);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--araz-muted);
+    font-style: italic;
+    background: color-mix(in oklab, var(--araz-secondary) 8%, transparent);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 0 30px rgba(255, 77, 210, 0.1);
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: var(--araz-text);
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li::marker {
+    color: var(--araz-accent);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(122, 61, 240, 0.15);
+    border: 1px solid color-mix(in oklab, var(--araz-primary) 20%, transparent);
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid color-mix(in oklab, var(--araz-primary) 15%, transparent);
+}
+
+th {
+    background: linear-gradient(135deg, 
+        color-mix(in oklab, var(--araz-primary) 20%, var(--araz-bg)),
+        color-mix(in oklab, var(--araz-secondary) 10%, var(--araz-bg)));
+    color: var(--araz-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+
+tr:hover {
+    background: color-mix(in oklab, var(--araz-secondary) 8%, transparent);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 
+        0 0 50px rgba(122, 61, 240, 0.3),
+        0 0 30px rgba(255, 77, 210, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.5);
+    border: 2px solid color-mix(in oklab, var(--araz-primary) 40%, transparent);
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background: var(--araz-banner);
+    margin: 2rem 0;
+    border-radius: 3px;
+    filter: drop-shadow(0 0 10px rgba(255, 77, 210, 0.5));
+}
+
+/* Strong emphasis */
+strong {
+    color: var(--araz-secondary);
+    font-weight: 700;
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* Emphasis */
+em {
+    color: var(--araz-accent);
+    font-style: italic;
+}
+
+/* Selection */
+::selection {
+    background: color-mix(in oklab, var(--araz-secondary) 40%, transparent);
+    color: white;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--araz-bg);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--araz-primary), var(--araz-secondary));
+    border-radius: 6px;
+    border: 2px solid var(--araz-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--araz-secondary);
+    box-shadow: 0 0 10px var(--araz-secondary);
+}

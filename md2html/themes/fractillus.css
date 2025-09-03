@@ -1,0 +1,317 @@
+/* Fractillus Theme - Crystal cyan & desert gold, glassy shards */
+
+:root {
+    /* Core Fractillus Palette */
+    --frac-bg: #0B0E10;           /* Quarry BG */
+    --frac-surface: #141A1E;      /* Shard Surface */
+    --frac-primary: #4BE3F8;      /* Crystal Cyan */
+    --frac-secondary: #D7B169;    /* Desert Gold */
+    --frac-accent: #E8F1F8;       /* Glass Highlight */
+    --frac-danger: #FF5E5E;       /* Shrapnel/Danger */
+    --frac-text: #EAF7FF;         /* Shard Text */
+    --frac-muted: #A6B3BD;        /* Muted Text */
+    
+    /* Banner gradient */
+    --frac-banner: linear-gradient(135deg, #141A1E 0%, #4BE3F8 55%, #D7B169 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--frac-text);
+    background: var(--frac-bg);
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Crystal fracture pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(60deg, transparent 48%, rgba(75, 227, 248, 0.03) 49%, rgba(75, 227, 248, 0.03) 51%, transparent 52%),
+        linear-gradient(-60deg, transparent 48%, rgba(215, 177, 105, 0.03) 49%, rgba(215, 177, 105, 0.03) 51%, transparent 52%);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--frac-surface);
+    border: 1px solid color-mix(in oklab, var(--frac-primary) 25%, transparent);
+    clip-path: polygon(
+        0 0,
+        calc(100% - 20px) 0,
+        100% 20px,
+        100% 100%,
+        20px 100%,
+        0 calc(100% - 20px)
+    );
+    padding: 3rem;
+    box-shadow: 
+        0 0 40px rgba(75, 227, 248, 0.15),
+        inset 0 0 80px rgba(75, 227, 248, 0.03);
+    position: relative;
+}
+
+.markdown-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--frac-banner);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--frac-primary), var(--frac-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 1px solid var(--frac-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--frac-secondary), transparent);
+}
+
+h2 {
+    color: var(--frac-secondary);
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    font-weight: 400;
+}
+
+h3 {
+    color: var(--frac-primary);
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--frac-text);
+}
+
+a {
+    color: var(--frac-primary);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+a:hover {
+    color: var(--frac-secondary);
+    text-shadow: 0 0 8px currentColor;
+}
+
+code {
+    background: linear-gradient(135deg, 
+        color-mix(in oklab, var(--frac-primary) 10%, transparent),
+        color-mix(in oklab, var(--frac-secondary) 10%, transparent));
+    color: var(--frac-primary);
+    padding: 0.2em 0.4em;
+    border-radius: 2px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid color-mix(in oklab, var(--frac-primary) 20%, transparent);
+}
+
+pre {
+    background: var(--frac-bg);
+    border: 1px solid color-mix(in oklab, var(--frac-primary) 20%, transparent);
+    border-radius: 2px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+pre code {
+    background: none;
+    color: var(--frac-text);
+    padding: 0;
+    border: none;
+}
+
+blockquote {
+    border-left: 3px solid var(--frac-secondary);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--frac-muted);
+    font-style: italic;
+    background: linear-gradient(90deg,
+        color-mix(in oklab, var(--frac-secondary) 8%, transparent),
+        transparent);
+    padding: 1rem;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: var(--frac-text);
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li::marker {
+    color: var(--frac-secondary);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--frac-primary) 20%, transparent);
+    background: var(--frac-surface);
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid color-mix(in oklab, var(--frac-primary) 10%, transparent);
+    border-right: 1px solid color-mix(in oklab, var(--frac-primary) 10%, transparent);
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+th {
+    background: linear-gradient(135deg,
+        color-mix(in oklab, var(--frac-primary) 15%, var(--frac-bg)),
+        color-mix(in oklab, var(--frac-secondary) 10%, var(--frac-bg)));
+    color: var(--frac-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+}
+
+tr:hover {
+    background: color-mix(in oklab, var(--frac-primary) 5%, transparent);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    clip-path: polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+    );
+    box-shadow: 
+        0 0 30px rgba(75, 227, 248, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--frac-primary) 20%,
+        var(--frac-secondary) 50%,
+        var(--frac-primary) 80%,
+        transparent);
+    margin: 2rem 0;
+    position: relative;
+}
+
+hr::before,
+hr::after {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--frac-secondary);
+    font-size: 0.8em;
+}
+
+hr::before {
+    left: 45%;
+}
+
+hr::after {
+    right: 45%;
+}
+
+/* Strong emphasis */
+strong {
+    color: var(--frac-secondary);
+    font-weight: 600;
+}
+
+/* Emphasis */
+em {
+    color: var(--frac-primary);
+    font-style: italic;
+}
+
+/* Selection */
+::selection {
+    background: color-mix(in oklab, var(--frac-primary) 30%, transparent);
+    color: var(--frac-text);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--frac-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--frac-primary), var(--frac-secondary));
+    clip-path: polygon(0 2px, 100% 0, 100% calc(100% - 2px), 0 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--frac-secondary);
+}

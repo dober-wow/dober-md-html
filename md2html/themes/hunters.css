@@ -1,0 +1,277 @@
+/* The Soul Hunters Theme - Fel neon & void glow, high-contrast punky */
+
+:root {
+    /* Core Hunters Palette */
+    --hunt-bg: #0A0F0A;           /* Ambush BG */
+    --hunt-surface: #111916;      /* Ruin Surface */
+    --hunt-primary: #39FF14;      /* Fel Neon */
+    --hunt-secondary: #8E3DFF;    /* Void Purple */
+    --hunt-accent: #FF7A00;       /* Ember Accent */
+    --hunt-danger: #E11D48;       /* Blood/Danger */
+    --hunt-text: #E7FFEE;         /* Edge Text */
+    --hunt-muted: #9AB79F;        /* Muted Text */
+    
+    /* Banner gradient */
+    --hunt-banner: linear-gradient(135deg, #111916 0%, #39FF14 45%, #8E3DFF 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--hunt-text);
+    background: var(--hunt-bg);
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Glitch effect animation */
+@keyframes glitch {
+    0%, 100% { text-shadow: 0 0 10px var(--hunt-primary); }
+    25% { text-shadow: -2px 0 var(--hunt-danger), 2px 0 var(--hunt-secondary); }
+    50% { text-shadow: 2px 0 var(--hunt-primary), -2px 0 var(--hunt-accent); }
+    75% { text-shadow: 0 0 20px var(--hunt-secondary); }
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--hunt-surface);
+    border: 2px solid var(--hunt-primary);
+    border-radius: 0;
+    padding: 3rem;
+    box-shadow: 
+        0 0 60px rgba(57, 255, 20, 0.3),
+        0 0 30px rgba(142, 61, 255, 0.2),
+        inset 0 0 100px rgba(57, 255, 20, 0.05);
+    position: relative;
+}
+
+.markdown-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--hunt-banner);
+}
+
+.markdown-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--hunt-banner);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--hunt-primary);
+    border-bottom: 3px solid var(--hunt-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    animation: glitch 4s infinite;
+    letter-spacing: 0.05em;
+}
+
+h2 {
+    color: var(--hunt-secondary);
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    text-shadow: 0 0 20px currentColor;
+}
+
+h3 {
+    color: var(--hunt-accent);
+    font-size: 1.5rem;
+    text-shadow: 0 0 15px currentColor;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--hunt-text);
+}
+
+a {
+    color: var(--hunt-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.95em;
+    letter-spacing: 0.05em;
+}
+
+a:hover {
+    color: var(--hunt-accent);
+    text-shadow: 0 0 30px currentColor;
+    animation: glitch 0.3s infinite;
+}
+
+code {
+    background: rgba(57, 255, 20, 0.2);
+    color: var(--hunt-primary);
+    padding: 0.2em 0.4em;
+    border-radius: 0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid var(--hunt-primary);
+    text-shadow: 0 0 5px currentColor;
+}
+
+pre {
+    background: var(--hunt-bg);
+    border: 2px solid var(--hunt-primary);
+    border-radius: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(57, 255, 20, 0.2);
+}
+
+pre code {
+    background: none;
+    color: var(--hunt-text);
+    padding: 0;
+    border: none;
+    text-shadow: none;
+}
+
+blockquote {
+    border-left: 5px solid var(--hunt-secondary);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--hunt-muted);
+    font-style: italic;
+    background: color-mix(in oklab, var(--hunt-secondary) 10%, transparent);
+    padding: 1rem;
+    border-radius: 0;
+    box-shadow: 0 0 40px rgba(142, 61, 255, 0.2);
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: var(--hunt-text);
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li::marker {
+    color: var(--hunt-primary);
+    font-weight: 900;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    border: 2px solid var(--hunt-primary);
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid var(--hunt-primary);
+}
+
+th {
+    background: var(--hunt-bg);
+    color: var(--hunt-primary);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px currentColor;
+}
+
+tr:hover {
+    background: rgba(57, 255, 20, 0.1);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border: 3px solid var(--hunt-primary);
+    box-shadow: 
+        0 0 60px rgba(57, 255, 20, 0.4),
+        0 0 30px rgba(142, 61, 255, 0.3);
+    filter: contrast(1.1) saturate(1.2);
+}
+
+hr {
+    border: none;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--hunt-primary) 0px,
+        var(--hunt-primary) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    margin: 2rem 0;
+}
+
+/* Strong emphasis */
+strong {
+    color: var(--hunt-accent);
+    font-weight: 900;
+    text-shadow: 0 0 15px currentColor;
+}
+
+/* Emphasis */
+em {
+    color: var(--hunt-secondary);
+    font-style: italic;
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* Selection */
+::selection {
+    background: var(--hunt-primary);
+    color: var(--hunt-bg);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--hunt-bg);
+    border: 1px solid var(--hunt-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--hunt-primary);
+    border: 2px solid var(--hunt-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--hunt-accent);
+    box-shadow: 0 0 10px var(--hunt-accent);
+}

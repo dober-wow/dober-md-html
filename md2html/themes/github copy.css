@@ -1,0 +1,140 @@
+/* GitHub Theme - Clean documentation style */
+
+:root {
+    --gh-bg: #ffffff;
+    --gh-surface: #f6f8fa;
+    --gh-border: #d1d5da;
+    --gh-text: #24292e;
+    --gh-text-muted: #586069;
+    --gh-link: #0366d6;
+    --gh-code-bg: #f6f8fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--gh-text);
+    background: var(--gh-bg);
+    padding: 2rem;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 2em;
+    border-bottom: 1px solid var(--gh-border);
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--gh-border);
+    padding-bottom: 0.3em;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+a {
+    color: var(--gh-link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: var(--gh-code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 85%;
+}
+
+pre {
+    background: var(--gh-code-bg);
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    margin-bottom: 16px;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    font-size: 100%;
+}
+
+blockquote {
+    border-left: 4px solid var(--gh-border);
+    padding: 0 1em;
+    color: var(--gh-text-muted);
+    margin-bottom: 16px;
+}
+
+ul, ol {
+    padding-left: 2em;
+    margin-bottom: 16px;
+}
+
+li {
+    margin-top: 0.25em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+th, td {
+    padding: 6px 13px;
+    border: 1px solid var(--gh-border);
+}
+
+th {
+    font-weight: 600;
+    background: var(--gh-surface);
+}
+
+tr:nth-child(even) {
+    background: var(--gh-surface);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 16px 0;
+}
+
+hr {
+    border: 0;
+    height: 0.25em;
+    background: var(--gh-border);
+    margin: 24px 0;
+}

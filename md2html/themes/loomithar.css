@@ -1,0 +1,297 @@
+/* Loom'ithar Theme - Arcane silk & web violet, saturated violets, cyan runes */
+
+:root {
+    /* Core Loom'ithar Palette */
+    --loom-bg: #0D0816;           /* Cocoon BG */
+    --loom-surface: #1A0F2A;      /* Web Surface */
+    --loom-primary: #8F3DFF;      /* Silk Violet */
+    --loom-secondary: #56E5FF;    /* Runic Cyan */
+    --loom-accent: #FF58C1;       /* Ichor Magenta */
+    --loom-danger: #FF3D81;       /* Rupture/Danger */
+    --loom-text: #F0E9FF;         /* Web Text */
+    --loom-muted: #B7A8D9;        /* Muted Text */
+    
+    /* Banner gradient */
+    --loom-banner: linear-gradient(135deg, #1A0F2A 0%, #8F3DFF 60%, #56E5FF 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--loom-text);
+    background: var(--loom-bg);
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Subtle web pattern overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(143, 61, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(86, 229, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 88, 193, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--loom-surface);
+    border: 1px solid color-mix(in oklab, var(--loom-primary) 25%, transparent);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 
+        0 0 60px rgba(143, 61, 255, 0.15),
+        inset 0 0 120px rgba(143, 61, 255, 0.03);
+    position: relative;
+    z-index: 2;
+}
+
+.markdown-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--loom-banner);
+    border-radius: 12px 12px 0 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--loom-primary), var(--loom-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 2px solid var(--loom-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 40px rgba(143, 61, 255, 0.3);
+}
+
+h2 {
+    color: var(--loom-secondary);
+    font-size: 2rem;
+    margin-top: 2.5rem;
+}
+
+h3 {
+    color: var(--loom-accent);
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--loom-text);
+}
+
+a {
+    color: var(--loom-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a:hover {
+    color: var(--loom-accent);
+    text-shadow: 0 0 15px currentColor;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--loom-accent);
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+code {
+    background: color-mix(in oklab, var(--loom-primary) 12%, transparent);
+    color: var(--loom-secondary);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid color-mix(in oklab, var(--loom-primary) 20%, transparent);
+}
+
+pre {
+    background: var(--loom-bg);
+    border: 1px solid color-mix(in oklab, var(--loom-primary) 20%, transparent);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+pre code {
+    background: none;
+    color: var(--loom-text);
+    padding: 0;
+    border: none;
+}
+
+blockquote {
+    border-left: 4px solid var(--loom-accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--loom-muted);
+    font-style: italic;
+    background: color-mix(in oklab, var(--loom-accent) 8%, transparent);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: var(--loom-text);
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li::marker {
+    color: var(--loom-primary);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(143, 61, 255, 0.12);
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid color-mix(in oklab, var(--loom-primary) 15%, transparent);
+}
+
+th {
+    background: color-mix(in oklab, var(--loom-primary) 15%, var(--loom-bg));
+    color: var(--loom-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+
+tr:hover {
+    background: color-mix(in oklab, var(--loom-accent) 5%, transparent);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 
+        0 0 40px rgba(143, 61, 255, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid color-mix(in oklab, var(--loom-primary) 30%, transparent);
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: var(--loom-banner);
+    margin: 2rem 0;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+hr::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--loom-accent), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    to {
+        left: 100%;
+    }
+}
+
+/* Strong emphasis */
+strong {
+    color: var(--loom-accent);
+    font-weight: 600;
+}
+
+/* Emphasis */
+em {
+    color: var(--loom-secondary);
+    font-style: italic;
+}
+
+/* Selection */
+::selection {
+    background: color-mix(in oklab, var(--loom-primary) 35%, transparent);
+    color: var(--loom-text);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--loom-bg);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--loom-primary), var(--loom-accent));
+    border-radius: 6px;
+    border: 2px solid var(--loom-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--loom-accent);
+}

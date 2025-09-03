@@ -1,0 +1,338 @@
+/* Nexus-King Salhadaar Theme - Royal violet & imperial gold, regal void */
+
+:root {
+    /* Core Salhadaar Palette */
+    --king-bg: #0A0811;           /* Throne BG */
+    --king-surface: #131124;      /* Court Surface */
+    --king-primary: #6E46FF;      /* Royal Violet */
+    --king-secondary: #F5C542;    /* Imperial Gold */
+    --king-accent: #2B2F6F;       /* Twilight Indigo */
+    --king-danger: #E63946;       /* Betrayal/Danger */
+    --king-text: #EEE8FF;         /* Edict Text */
+    --king-muted: #B9B2E5;        /* Muted Text */
+    
+    /* Banner gradient */
+    --king-banner: linear-gradient(135deg, #131124 0%, #6E46FF 55%, #F5C542 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.7;
+    color: var(--king-text);
+    background: var(--king-bg);
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Royal crown pattern */
+body::after {
+    content: '';
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--king-secondary) 0%, transparent 70%);
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--king-surface);
+    border: 2px solid var(--king-secondary);
+    border-radius: 0;
+    padding: 3.5rem;
+    box-shadow: 
+        0 0 60px rgba(110, 70, 255, 0.2),
+        0 0 30px rgba(245, 197, 66, 0.15),
+        inset 0 0 100px rgba(110, 70, 255, 0.03);
+    position: relative;
+}
+
+/* Royal frame decoration */
+.markdown-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--king-banner);
+    z-index: -1;
+}
+
+.markdown-container::after {
+    content: '♔';
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    color: var(--king-secondary);
+    opacity: 0.3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(135deg, var(--king-primary), var(--king-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 3px double var(--king-secondary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+h2 {
+    color: var(--king-secondary);
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+h2::before {
+    content: '❖';
+    position: absolute;
+    left: 0;
+    color: var(--king-primary);
+}
+
+h3 {
+    color: var(--king-primary);
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--king-text);
+    text-align: justify;
+}
+
+p:first-of-type::first-letter {
+    font-size: 3em;
+    float: left;
+    line-height: 1;
+    margin: 0 0.1em 0 0;
+    color: var(--king-secondary);
+    font-weight: 700;
+    text-shadow: 0 0 20px currentColor;
+}
+
+a {
+    color: var(--king-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    border-bottom: 1px dotted var(--king-primary);
+}
+
+a:hover {
+    color: var(--king-secondary);
+    border-bottom-color: var(--king-secondary);
+    text-shadow: 0 0 10px currentColor;
+}
+
+code {
+    background: color-mix(in oklab, var(--king-primary) 10%, transparent);
+    color: var(--king-secondary);
+    padding: 0.2em 0.4em;
+    border-radius: 0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid var(--king-secondary);
+}
+
+pre {
+    background: var(--king-bg);
+    border: 2px solid var(--king-accent);
+    border-radius: 0;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+pre code {
+    background: none;
+    color: var(--king-text);
+    padding: 0;
+    border: none;
+}
+
+blockquote {
+    border-left: 5px solid var(--king-secondary);
+    border-right: 5px solid var(--king-secondary);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    color: var(--king-muted);
+    font-style: italic;
+    background: color-mix(in oklab, var(--king-primary) 5%, transparent);
+    position: relative;
+    text-align: center;
+}
+
+blockquote::before,
+blockquote::after {
+    content: '"';
+    position: absolute;
+    font-size: 3rem;
+    color: var(--king-secondary);
+    opacity: 0.3;
+}
+
+blockquote::before {
+    top: -0.5rem;
+    left: 0.5rem;
+}
+
+blockquote::after {
+    bottom: -1.5rem;
+    right: 0.5rem;
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2.5rem;
+    color: var(--king-text);
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li::marker {
+    color: var(--king-secondary);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    border: 2px solid var(--king-secondary);
+    box-shadow: 0 0 30px rgba(245, 197, 66, 0.1);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--king-accent);
+    border-right: 1px solid var(--king-accent);
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+th {
+    background: var(--king-accent);
+    color: var(--king-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+tr:hover {
+    background: color-mix(in oklab, var(--king-primary) 8%, transparent);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    border: 3px solid var(--king-secondary);
+    box-shadow: 
+        0 0 40px rgba(245, 197, 66, 0.2),
+        0 6px 20px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    background: var(--king-surface);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: var(--king-secondary);
+    margin: 3rem auto;
+    width: 50%;
+    position: relative;
+}
+
+hr::before {
+    content: '♔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--king-surface);
+    padding: 0 1rem;
+    color: var(--king-secondary);
+    font-size: 1.5rem;
+}
+
+/* Strong emphasis */
+strong {
+    color: var(--king-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Emphasis */
+em {
+    color: var(--king-primary);
+    font-style: italic;
+}
+
+/* Selection */
+::selection {
+    background: var(--king-secondary);
+    color: var(--king-bg);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--king-bg);
+    border: 1px solid var(--king-accent);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--king-primary), var(--king-secondary));
+    border: 2px solid var(--king-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--king-secondary);
+}
