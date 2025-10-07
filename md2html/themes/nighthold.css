@@ -1,0 +1,256 @@
+/* Nighthold Theme - readable, high-contrast dark */
+
+:root {
+    --bg: #0a0b12;        /* starlit ink */
+    --surface: #131626;   /* night court */
+    --text: #e6e2f5;      /* moonlit parchment */
+    --muted: #b3acd6;     /* soft lavender-gray */
+    --border: #2a2e45;
+
+    --primary: #7c5cff;   /* arcane violet */
+    --primary-600: #6847f0;
+    --secondary: #00d1ff; /* crystalline cyan */
+    --accent: #ff4d9a;    /* magenta pop */
+    --link: #7c5cff;
+
+    --code-bg: #0e1120;
+    --code-border: #2c3361;
+    --inline-code: #f7f5ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    padding: 2.5rem;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 24px 40px rgba(42, 46, 69, 0.55);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text);
+}
+
+h1 {
+    font-size: 2.45rem;
+    border-bottom: 2px solid rgba(124, 92, 255, 0.6);
+    padding-bottom: 0.75rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: var(--secondary);
+}
+
+p {
+    margin: 1.1rem 0;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(124, 92, 255, 0.55);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent);
+    border-color: rgba(255, 77, 154, 0.5);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+}
+
+code {
+    background: var(--code-bg);
+    color: var(--inline-code);
+    border: 1px solid var(--code-border);
+    border-radius: 6px;
+    padding: 0.2em 0.45em;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 0.95em;
+}
+
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.8rem 0;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text);
+}
+
+blockquote,
+.card {
+    background: linear-gradient(180deg, rgba(124, 92, 255, 0.08), rgba(0, 209, 255, 0.07));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 1.75rem 0;
+}
+
+ul, ol {
+    margin: 1.2rem 0;
+    padding-left: 2.25rem;
+}
+
+li {
+    margin: 0.6rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    background: var(--surface);
+}
+
+th, td {
+    padding: 0.9rem;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: rgba(124, 92, 255, 0.12);
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:nth-child(even) {
+    background: rgba(42, 46, 69, 0.45);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    margin: 1.8rem auto;
+    border: 1px solid rgba(42, 46, 69, 0.65);
+}
+
+body.nighthold {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.nighthold .theme-ambient {
+    position: relative;
+    isolation: isolate;
+}
+
+body.nighthold .ambient-layer {
+    position: absolute;
+    inset: -12%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.nighthold .markdown-container {
+    position: relative;
+    z-index: 1;
+}
+
+body.nighthold .arcane-motes {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.035) 0px, transparent 3px) repeat;
+    background-size: 220px 220px;
+    animation: motes-drift 60s linear infinite;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+}
+
+body.nighthold h1,
+body.nighthold h2,
+body.nighthold h3 {
+    position: relative;
+    animation: header-pulse 10s ease-in-out infinite;
+}
+
+body.nighthold hr {
+    position: relative;
+    overflow: visible;
+}
+
+body.nighthold hr::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        rgba(124, 92, 255, 0),
+        rgba(124, 92, 255, 0.5),
+        rgba(0, 209, 255, 0),
+        rgba(124, 92, 255, 0.45),
+        rgba(124, 92, 255, 0)
+    );
+    animation: line-scan 14s linear infinite;
+}
+
+@keyframes motes-drift {
+    0% { background-position: 0 0; }
+    100% { background-position: -760px 580px; }
+}
+
+@keyframes header-pulse {
+    0%, 100% { text-shadow: 0 0 6px rgba(124, 92, 255, 0.6); }
+    50% { text-shadow: 0 0 16px rgba(0, 209, 255, 0.75); }
+}
+
+@keyframes line-scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 120% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.nighthold .ambient-layer,
+    body.nighthold h1,
+    body.nighthold h2,
+    body.nighthold h3,
+    body.nighthold hr::after {
+        animation: none !important;
+        text-shadow: none;
+    }
+}

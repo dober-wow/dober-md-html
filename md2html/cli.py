@@ -11,6 +11,18 @@ from .converter import convert_markdown, convert_directory
 from .watcher import watch_directory
 from .server import serve_directory
 
+THEME_CHOICES = [
+    'antorus',
+    'dark',
+    'emerald-nightmare',
+    'github',
+    'manaforge',
+    'minimal',
+    'nighthold',
+    'tomb-of-sargeras',
+    'trial-of-valor',
+]
+
 
 @click.group()
 @click.version_option(version='2.0.0', prog_name='md2html')
@@ -28,8 +40,8 @@ def cli():
 @click.argument('source', type=click.Path(exists=True, readable=True))
 @click.option('--output', '-o', required=True, type=click.Path(),
               help='Output path (required)')
-@click.option('--theme', '-t', 
-              type=click.Choice(['manaforge', 'github', 'minimal', 'dark']),
+@click.option('--theme', '-t',
+              type=click.Choice(THEME_CHOICES),
               required=True,
               help='Theme to use (required)')
 @click.option('--embed-images/--link-images', default=True,
@@ -90,7 +102,7 @@ def convert(source, output, theme, embed_images, toc, recursive):
 @click.option('--output', '-o', required=True, type=click.Path(),
               help='Output directory (required)')
 @click.option('--theme', '-t',
-              type=click.Choice(['manaforge', 'github', 'minimal', 'dark']),
+              type=click.Choice(THEME_CHOICES),
               required=True,
               help='Theme to use (required)')
 @click.option('--interval', type=float, default=1.0,

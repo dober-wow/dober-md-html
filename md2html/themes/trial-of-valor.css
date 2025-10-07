@@ -1,0 +1,259 @@
+/* Trial of Valor Theme - readable, high-contrast dark */
+
+:root {
+    --bg: #0b0e13;        /* fjord midnight */
+    --surface: #131823;   /* shadowed nave */
+    --text: #e9edf4;      /* pale silver */
+    --muted: #a5b0bf;     /* cool slate */
+    --border: #273042;
+
+    --primary: #c28b37;   /* Odyn gold */
+    --primary-600: #a87328;
+    --secondary: #2e5e9e; /* runic blue */
+    --accent: #7fdbff;    /* icy highlight */
+    --link: #c28b37;
+
+    --code-bg: #0f1420;
+    --code-border: #2c3a55;
+    --inline-code: #f6f8fb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    padding: 2.5rem;
+}
+
+.markdown-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 18px 38px rgba(39, 48, 66, 0.6);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text);
+    letter-spacing: 0.2px;
+}
+
+h1 {
+    font-size: 2.45rem;
+    border-bottom: 2px solid rgba(194, 139, 55, 0.55);
+    padding-bottom: 0.75rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: var(--secondary);
+}
+
+p {
+    margin: 1.1rem 0;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(194, 139, 55, 0.55);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent);
+    border-color: rgba(127, 219, 255, 0.5);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+}
+
+code {
+    background: var(--code-bg);
+    color: var(--inline-code);
+    border: 1px solid var(--code-border);
+    border-radius: 6px;
+    padding: 0.2em 0.45em;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 0.95em;
+}
+
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.8rem 0;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text);
+}
+
+blockquote,
+.card {
+    background: linear-gradient(180deg, rgba(194, 139, 55, 0.08), rgba(46, 94, 158, 0.06));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 1.75rem 0;
+}
+
+ul, ol {
+    margin: 1.2rem 0;
+    padding-left: 2.25rem;
+}
+
+li {
+    margin: 0.6rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    background: var(--surface);
+}
+
+th, td {
+    padding: 0.9rem;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: rgba(46, 94, 158, 0.12);
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:nth-child(even) {
+    background: rgba(39, 48, 66, 0.4);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    margin: 1.8rem auto;
+    border: 1px solid rgba(39, 48, 66, 0.6);
+}
+
+body.trial-of-valor {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.trial-of-valor .theme-ambient {
+    position: relative;
+    isolation: isolate;
+}
+
+body.trial-of-valor .ambient-layer {
+    position: absolute;
+    inset: -10% -20%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.trial-of-valor .markdown-container {
+    position: relative;
+    z-index: 1;
+}
+
+body.trial-of-valor .light-beam {
+    left: 50%;
+    width: 12%;
+    min-width: 160px;
+    height: 220%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        180deg,
+        rgba(194, 139, 55, 0),
+        rgba(194, 139, 55, 0.18) 45%,
+        rgba(194, 139, 55, 0.02)
+    );
+    filter: blur(2px);
+    opacity: 0.35;
+    animation: beam-shift 22s ease-in-out infinite;
+}
+
+body.trial-of-valor .glyphs-overlay {
+    background-image:
+        radial-gradient(circle at 12% 20%, rgba(194, 139, 55, 0.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 65%, rgba(46, 94, 158, 0.16) 0 2px, transparent 3px);
+    background-size: 220px 320px, 260px 280px;
+    animation: glyph-fade 36s linear infinite;
+    mix-blend-mode: screen;
+    opacity: 0.28;
+}
+
+body.trial-of-valor hr {
+    position: relative;
+    overflow: visible;
+}
+
+body.trial-of-valor hr::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    bottom: -1px;
+    border-top: 1px solid rgba(194, 139, 55, 0.45);
+    border-bottom: 1px solid rgba(46, 94, 158, 0.3);
+    animation: border-glow 16s ease-in-out infinite;
+}
+
+@keyframes beam-shift {
+    0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 0.3; }
+    50% { transform: translateX(-50%) scaleY(1.12); opacity: 0.48; }
+}
+
+@keyframes glyph-fade {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: -420px 680px, 380px -520px; }
+}
+
+@keyframes border-glow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.trial-of-valor .ambient-layer,
+    body.trial-of-valor hr::before {
+        animation: none !important;
+    }
+}
