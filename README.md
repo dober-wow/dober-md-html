@@ -1,6 +1,6 @@
 # MD2HTML - Markdown to HTML Converter
 
-MD2HTML is a theme-aware Markdown to HTML converter with a concise CLI, watch mode, and preview server. All behaviour is explicit -- no hidden fallbacks or auto-detection.
+MD2HTML is a theme-aware Markdown to HTML converter with a concise CLI, watch mode, and preview server. Behaviour stays explicit—when a document omits theme metadata under `--theme auto`, we fall back to the default `manaforge` palette instead of guessing.
 
 ## Features
 
@@ -74,7 +74,7 @@ Running the converter with --theme auto (CLI) or -Theme auto (PowerShell) tells 
    # Odyn Notes
    `
 
-If --theme auto is used and no metadata exists, the converter stops so the intended theme stays explicit.
+If --theme auto is used and no metadata exists, the converter prints a notice and converts with the default `manaforge` theme. Add metadata to opt into a different look per file.
 
 ## Theme catalogue
 
@@ -150,7 +150,7 @@ dober-md-html/
 
 ## Configuration defaults
 
-- **Theme**: Provide a name or use --theme auto with per-file metadata
+- **Theme**: Provide a name or use --theme auto; files without metadata fall back to `manaforge`
 - **Output**: Always required
 - **Recursive conversion**: Disabled by default (--recursive opt-in)
 - **TOC generation**: Disabled by default (--toc to enable)

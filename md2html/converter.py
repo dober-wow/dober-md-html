@@ -1,6 +1,6 @@
 ﻿"""
 Core markdown to HTML conversion.
-No fallbacks, no auto-detection, explicit configuration only.
+Explicit configuration first, with a guarded default fallback.
 """
 
 import base64
@@ -33,6 +33,7 @@ AVAILABLE_THEMES = {
     'trial-of-valor',
 }
 AVAILABLE_THEMES_LIST = sorted(AVAILABLE_THEMES)
+DEFAULT_THEME = 'manaforge'
 THEME_HINT_COMMENT_RE = re.compile(
     r'<!--\s*md2html-theme\s*:\s*([a-z0-9\-]+)\s*-->',
     re.IGNORECASE,
@@ -129,11 +130,12 @@ def _resolve_theme_choice(requested_theme: str, content: str, md_file: Path) -> 
         if discovered:
             logger.info("Detected theme '%s' for %s", discovered, md_file.name)
             return discovered
-        raise ValueError(
-            f"No theme metadata found in {md_file}. "
-            "Specify a theme with --theme or add "
-            "`<!-- md2html-theme: <theme> -->` or front matter."
+        logger.info(
+            "No theme metadata found in %s; falling back to default '%s'",
+            md_file.name,
+            DEFAULT_THEME,
         )
+        return DEFAULT_THEME
 
     if discovered and discovered != requested_theme:
         logger.info(
