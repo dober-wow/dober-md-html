@@ -227,6 +227,8 @@ python md2html.py serve site/ --port 8000 --host 127.0.0.1
 
 > Ambient motifs (mist, glyphs, motes, fel coils, cosmic dust) render via layered overlays and honor `prefers-reduced-motion`.
 
+> Use `<!-- md2html-theme: <theme> -->` or YAML front matter (`md2html.theme`) when running commands such as `md2html convert <path> --theme auto` to select themes per document.
+
 ### Theme Statistics
 - Total themes: 20+
 - Total CSS lines: ~3,800
@@ -415,3 +417,4 @@ python md2html.py serve test/ -p 8000
 ---
 
 *Last updated: 2025-09-03 | Version: 2.0.0 | Maintained by: Bean Raid*
+

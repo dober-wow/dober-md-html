@@ -8,7 +8,7 @@
 .PARAMETER OutputDir
     Directory where HTML files will be saved
 .PARAMETER Theme
-    Theme name: antorus, dark, emerald-nightmare, github, manaforge, minimal, nighthold, tomb-of-sargeras, or trial-of-valor
+    Theme name: antorus, dark, emerald-nightmare, github, manaforge, minimal, nighthold, tomb-of-sargeras, trial-of-valor, or auto (metadata-driven)
 .PARAMETER Recursive
     Process subdirectories recursively
 .PARAMETER TableOfContents
@@ -37,7 +37,7 @@ param(
     [string]$OutputDir,
     
     [Parameter(Mandatory=$true, Position=2)]
-    [ValidateSet('antorus', 'dark', 'emerald-nightmare', 'github', 'manaforge', 'minimal', 'nighthold', 'tomb-of-sargeras', 'trial-of-valor')]
+    [ValidateSet('antorus', 'dark', 'emerald-nightmare', 'github', 'manaforge', 'minimal', 'nighthold', 'tomb-of-sargeras', 'trial-of-valor', 'auto')]
     [string]$Theme,
     
     [Parameter()]

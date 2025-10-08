@@ -7,21 +7,11 @@ import sys
 from pathlib import Path
 import click
 
-from .converter import convert_markdown, convert_directory
+from .converter import AVAILABLE_THEMES, convert_markdown, convert_directory
 from .watcher import watch_directory
 from .server import serve_directory
 
-THEME_CHOICES = [
-    'antorus',
-    'dark',
-    'emerald-nightmare',
-    'github',
-    'manaforge',
-    'minimal',
-    'nighthold',
-    'tomb-of-sargeras',
-    'trial-of-valor',
-]
+THEME_CHOICES = sorted(AVAILABLE_THEMES) + ['auto']
 
 
 @click.group()

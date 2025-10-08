@@ -1,118 +1,96 @@
 # MD2HTML - Markdown to HTML Converter
 
-A powerful, theme-based Markdown to HTML converter with live preview, file watching, and beautiful built-in themes.
+MD2HTML is a theme-aware Markdown to HTML converter with a concise CLI, watch mode, and preview server. All behaviour is explicit -- no hidden fallbacks or auto-detection.
 
 ## Features
 
-- 🎨 **Beautiful Themes**: Manaforge (dark gaming), GitHub, Minimal, and Dark themes
-- 📁 **Batch Conversion**: Convert single files or entire directories
-- 👁️ **Live Preview**: Built-in server with auto-refresh
-- 🔄 **File Watching**: Auto-convert on file changes
-- 🖼️ **Image Handling**: Embed images as base64 or link them
-- 📚 **Table of Contents**: Optional TOC generation
-- 🚀 **Fast & Clean**: No magic, explicit configuration
+- Theme-aware rendering for core styles (manaforge, github, minimal, dark) and raid-inspired palettes (emerald-nightmare, trial-of-valor, nighthold, tomb-of-sargeras, antorus)
+- Batch conversion for single files or entire directories with deterministic output
+- Optional watch mode and lightweight HTTP server for rapid editing loops
+- Image embedding with format and size validation to prevent surprises
+- Metadata hook that picks a theme per document when running with --theme auto
 
 ## Installation
 
-### Using pip
-
 ```bash
+cd dober-md-html
 pip install -r requirements.txt
 ```
 
-### Requirements
-
-- Python 3.9+
-- markdown
-- beautifulsoup4
-- click
-- watchdog
-- aiohttp
+Supported dependencies (Python 3.9+): markdown, beautifulsoup4, click, watchdog, aiohttp.
 
 ## Usage
 
-### Command Line Interface
-
-#### Convert a Single File
+### Convert a single file
 
 ```bash
-python md2html.py convert input.md --output output.html --theme manaforge
+python md2html.py convert README.md --output README.html --theme manaforge
 ```
 
-#### Convert a Directory
+### Convert a directory
 
 ```bash
-python md2html.py convert docs/ --output site/ --theme github --recursive
+python md2html.py convert repo/bean_raid --output docs --theme github --recursive
 ```
 
-#### Watch Mode
-
-Automatically convert files when they change:
+### Watch for changes
 
 ```bash
-python md2html.py watch docs/ --output site/ --theme dark --recursive
+python md2html.py watch repo/bean_raid --output docs --theme dark --recursive
 ```
 
-#### Preview Server
-
-Start a live preview server:
+### Preview generated HTML
 
 ```bash
-python md2html.py serve site/ --port 8000
+python md2html.py serve docs --port 8000
 ```
 
-### PowerShell Wrapper
-
-For Windows users, use the PowerShell wrapper for easier batch operations:
+### PowerShell wrapper
 
 ```powershell
-.\Convert-MdBatch.ps1 -InputDir docs -OutputDir site -Theme manaforge -Recursive
+./Convert-MdBatch.ps1 -InputDir repo/bean_raid -OutputDir docs -Theme manaforge -Recursive
 ```
 
-With live preview:
+Add -Watch or -Serve -Port 3000 to mirror the CLI options.
 
-```powershell
-.\Convert-MdBatch.ps1 -InputDir docs -OutputDir site -Theme dark -Serve -Port 3000
-```
+## Automatic theme selection (--theme auto)
 
-With file watching:
+Running the converter with --theme auto (CLI) or -Theme auto (PowerShell) tells MD2HTML to read the desired theme from the markdown file. Declare the theme using either form:
 
-```powershell
-.\Convert-MdBatch.ps1 -InputDir docs -OutputDir site -Theme github -Watch
-```
+1. Inline HTML comment (anywhere near the top):
 
-## Themes
+   ```markdown
+   <!-- md2html-theme: nighthold -->
+   # Raid Log
+   `
 
-### Manaforge
-A beautiful dark theme with blue/purple gradients, perfect for gaming and tech content.
+2. YAML front matter:
 
-### GitHub
-Clean and familiar GitHub-style markdown rendering.
+   ```markdown
+   ---
+   md2html:
+     theme: trial-of-valor
+   ---
+   # Odyn Notes
+   `
 
-### Minimal
-Simple, distraction-free reading experience.
+If --theme auto is used and no metadata exists, the converter stops so the intended theme stays explicit.
 
-### Dark
-Classic dark mode for comfortable reading.
+## Theme catalogue
 
-## Python API
+| Theme | Notes |
+|-------|-------|
+| manaforge | Dark UI with neon accents |
+| github | GitHub-flavoured documentation |
+| minimal | Light, distraction-free reading |
+| dark | Classic dark reader |
+| emerald-nightmare | Corrupted forest palette |
+| `trial-of-valor` | Runic golden hall |
+| `nighthold` | Arcane indigo and cyan |
+| `tomb-of-sargeras` | Abyssal teal with fel fissures |
+| `antorus` | Ember orange with fel sparks |
 
-```python
-from md2html import convert_markdown
-
-# Convert a single file
-convert_markdown(
-    input_path='README.md',
-    output_path='README.html',
-    theme='manaforge',
-    embed_images=True,
-    generate_toc=False
-)
-```
-
-## GitHub Actions Integration
-
-Use MD2HTML in your GitHub Actions workflow:
+## GitHub Actions example
 
 ```yaml
 name: Convert Markdown to HTML
@@ -122,75 +100,70 @@ on:
     branches: [main]
 
 jobs:
-  convert:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          
-      - name: Install MD2HTML
+          python-version: "3.11"
+
+      - name: Install dependencies
         run: |
           pip install markdown beautifulsoup4 click watchdog aiohttp
-          
-      - name: Convert Markdown files
+
+      - name: Convert markdown
         run: |
-          python md2html.py convert . --output _site --theme manaforge --recursive
-          
-      - name: Upload artifacts
+          # Use --theme auto when markdown files include theme metadata
+          python md2html.py convert repo/bean_raid --output docs --theme auto --recursive
+
+      - name: Upload artefacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: docs
 ```
 
-## Project Structure
+## Project structure
 
 ```
 dober-md-html/
-├── md2html/
-│   ├── __init__.py       # Package initialization
-│   ├── cli.py            # Command-line interface
-│   ├── converter.py      # Core conversion logic
-│   ├── server.py         # Preview server
-│   ├── watcher.py        # File watching
-│   └── themes/           # CSS themes
-│       ├── manaforge.css
-│       ├── github.css
-│       ├── minimal.css
-│       └── dark.css
-├── md2html.py            # Main entry point
-├── Convert-MdBatch.ps1   # PowerShell wrapper
-├── requirements.txt      # Python dependencies
-├── setup.py             # Package setup
-└── README.md            # This file
+|-- md2html/
+|   |-- __init__.py
+|   |-- cli.py
+|   |-- converter.py
+|   |-- server.py
+|   |-- watcher.py
+|   -- themes/
+|       |-- manaforge.css
+|       |-- github.css
+|       |-- minimal.css
+|       |-- dark.css
+|       -- ...
+|-- md2html.py
+|-- Convert-MdBatch.ps1
+|-- requirements.txt
+|-- setup.py
+-- README.md
 ```
 
-## Configuration
+## Configuration defaults
 
-All configuration is explicit - no magic or auto-detection:
-
-- **Theme**: Must be specified (no default)
-- **Output**: Must be specified (no default)
-- **Recursive**: Disabled by default (explicit opt-in)
-- **TOC**: Disabled by default (explicit opt-in)
-- **Image Embedding**: Enabled by default (can disable)
+- **Theme**: Provide a name or use --theme auto with per-file metadata
+- **Output**: Always required
+- **Recursive conversion**: Disabled by default (--recursive opt-in)
+- **TOC generation**: Disabled by default (--toc to enable)
+- **Image embedding**: Enabled by default (--link-images to disable)
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Pull requests are welcome. Please keep the explicit-configuration philosophy intact.
 
 ## License
 
-MIT License - See LICENSE file for details
-
-## Author
-
-Bean Raid
+MIT License - see LICENSE.
 
 ## Support
 
-For issues, questions, or suggestions, please open an issue on GitHub:
-https://github.com/dober-wow/dober-md-html/issues
+Open an issue at https://github.com/dober-wow/dober-md-html/issues for questions or bug reports.
